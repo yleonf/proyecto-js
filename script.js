@@ -14,7 +14,8 @@
      const student={name,lastName,grade}
      students.push(student)
      console.log(students)
- addStudentToTable(student)
+     addStudentToTable(student)
+     calcularPromedio();
       this.reset();
 
  })
@@ -27,4 +28,16 @@ const tableBody=document.querySelector("#studentTable tbody")
     <td>${student.grade}</td>
     `;
 tableBody.appendChild(row)
+ }
+
+const promDiv=document.getElementById("average");
+ function calcularPromedio(){
+    if(students.length===0){
+      promDiv.innerHTML="Promedio General del Curso : N/A";
+        return
+    }
+   /* calcular el promedio */
+   const total=students.reduce((acc,student)=>acc+student.grade,0);
+   const average=total/students.length;
+   promDiv.innerHTML=`Promedio General del Curso : ${average.toFixed(2)}`;
  }
